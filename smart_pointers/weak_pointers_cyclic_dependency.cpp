@@ -17,10 +17,12 @@ int main(){
     
     auto A = std::make_shared<Team>();
     auto B = std::make_shared<Person>();
-    auto C = std::make_unique<Person>();
     
     A->goalKeeper = B;
     B->team = A;
+
+    std::cout<<"A use count: "<<A.use_count()<<std::endl;
+    std::cout<<"B use count: "<<B.use_count()<<std::endl;
     
     return 0;
 

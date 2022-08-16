@@ -8,7 +8,7 @@ public:
     std::string name;
     person(std::string name) : name(name) {}
     ~person() {
-        std::cout << "Person destructed." << std::endl;
+        std::cout << "Person destructed :" << name << std::endl;
     }
     void printHello() {
         std::cout << "Hello World " << std::endl;
@@ -43,7 +43,7 @@ void printName_reference(person &p) {
 
 int main()
 {
-    std::unique_ptr<person> cand_1;
+    std::unique_ptr<person> cand_1(new person{"Tom"});
     std::unique_ptr<person> cand_2;
     cand_1.reset(new person("John"));
     cand_2 = std::make_unique<person>("Jane");
