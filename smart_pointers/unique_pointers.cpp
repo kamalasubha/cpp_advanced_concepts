@@ -47,7 +47,8 @@ int main()
     std::unique_ptr<person> cand_2;
     cand_1.reset(new person("John"));
     cand_2 = std::make_unique<person>("Jane");
-
+    person *p = cand_2.get();
+    p->name = "Jane Doe";
     std::cout << "Candidate1 name = " << cand_1->name << '\n';
     std::cout << "Candidate2 name = " << cand_2.get()->name << '\n';
 
@@ -61,7 +62,7 @@ int main()
     cand_1->printHello();
     cand_3->printHello();
 
-    if (cand_1) {
+    if (cand_1 != nullptr) {
         cand_1->printName();
     }
     else {
@@ -88,6 +89,13 @@ int main()
 
     printName_pointer(cand_3.get());
     printName_reference(*cand_3);
-
-    
+    p = cand_3.release();
+    if (cand_3) {
+        cand_3->printName();
+    }
+    else {
+        std::cout << "cand_3 is null" << std::endl;
+    }
+    delete p;
+ 
 }
